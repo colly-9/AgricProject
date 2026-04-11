@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>FarmHelp</title>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <header>
+      <h1>FarmHelp AI</h1>
+      <p>
+        Educational “symptom-to-next-steps” guidance for farmers and students.
+        This is a prototype—do not use it as the only basis for treatment decisions.
+      </p>
+    </header>
+
+    <aside role="note" aria-label="Prototype disclaimer">
+      <strong>Disclaimer:</strong>
+      This app provides general information and learning support. It does not diagnose disease.
+      If symptoms are severe, spreading rapidly, or you’re unsure, contact a local agronomist/extension officer.
+    </aside>
+
+    <main id="main">
+      <section aria-labelledby="inputs-title">
+        <h2 id="inputs-title">1) Describe your crop situation</h2>
+
+        <form id="symptom-form">
+          <fieldset>
+            <legend>Crop</legend>
+
+            <label for="crop">Choose a crop</label>
+            <select id="crop" name="crop" required>
+              <option value="" selected disabled>Select crop…</option>
+              <option value="maize">Maize</option>
+              <option value="tomato">Tomato</option>
+              <option value="cassava">Cassava</option>
+              <option value="other">Other (prototype)</option>
+            </select>
+          </fieldset>
+
+          <fieldset>
+            <legend>Plant part</legend>
+            <label for="plant-part">Which part is affected?</label>
+            <select id="plant-part" name="plantPart" required>
+              <option value="" selected disabled>Select part…</option>
+              <option value="leaf">Leaf</option>
+              <option value="stem">Stem</option>
+              <option value="root">Root</option>
+              <option value="whole">Whole plant</option>
+            </select>
+          </fieldset>
+
+          <fieldset>
+            <legend>Growth stage</legend>
+            <label for="growth-stage">What stage is it at?</label>
+            <select id="growth-stage" name="growthStage" required>
+              <option value="" selected disabled>Select stage…</option>
+              <option value="seedling">Seedling</option>
+              <option value="vegetative">Vegetative</option>
+              <option value="flowering">Flowering</option>
+              <option value="fruiting">Fruiting</option>
+            </select>
+          </fieldset>
+
+          <fieldset>
+            <legend>Symptoms (select all that apply)</legend>
+            <p>Select what you’re observing. You can also add details in the text box.</p>
+
+            <div id="symptom-options" role="group" aria-label="Symptom checkboxes">
+              <label><input type="checkbox" name="symptoms" value="yellowing" /> Yellowing</label>
+              <label><input type="checkbox" name="symptoms" value="leaf-spots" /> Leaf spots / lesions</label>
+              <label><input type="checkbox" name="symptoms" value="wilting" /> Wilting / drooping</label>
+              <label><input type="checkbox" name="symptoms" value="powdery" /> Powdery coating</label>
+              <label><input type="checkbox" name="symptoms" value="holes" /> Holes / chewing</label>
+              <label><input type="checkbox" name="symptoms" value="curling" /> Leaf curling</label>
+              <label><input type="checkbox" name="symptoms" value="stunting" /> Stunting / poor growth</label>
+              <label><input type="checkbox" name="symptoms" value="wilting-early" /> Early wilting</label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Optional description (plain text)</legend>
+            <label for="description">What do you see? (e.g., pattern of spots, when it started, severity)</label>
+            <textarea
+              id="description"
+              name="description"
+              rows="6"
+              placeholder="Write a short description you can explain to a teacher or agronomist…"
+            ></textarea>
+          </fieldset>
+
+          <div>
+            <p id="status" aria-live="polite" aria-atomic="true"></p>
+            <button type="submit" id="get-guidance">Get guidance</button>
+            <button type="button" id="load-sample">Load sample</button>
+          </div>
+        </form>
+      </section>
+
+      <section aria-labelledby="output-title">
+        <h2 id="output-title">2) FarmHelp guidance (demo output)</h2>
+
+        <article>
+          <h3>Brief summary</h3>
+          <p id="summary">Your guidance will appear here after you click “Get guidance”.</p>
+        </article>
+
+        <article>
+          <h3>Possible issue categories (non-diagnostic)</h3>
+          <ul id="shortlist">
+            <li>No output yet.</li>
+          </ul>
+        </article>
+
+        <article>
+          <h3>What to inspect next</h3>
+          <ul id="checklist">
+            <li>Pick symptoms on the left to generate a checklist.</li>
+          </ul>
+        </article>
+
+        <article>
+          <h3>Escalate if…</h3>
+          <ul id="escalate">
+            <li>Uncertainty is high or symptoms are rapidly worsening.</li>
+          </ul>
+        </article>
+
+        <article>
+          <h3>Sources (prototype knowledge base)</h3>
+          <div id="sources">We will list the included extension-style documents here.</div>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Built as a coursework prototype. For real farm decision-making, consult qualified local experts.
+      </p>
+    </footer>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
+

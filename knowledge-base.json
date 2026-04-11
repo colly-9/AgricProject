@@ -1,0 +1,409 @@
+{
+  "meta": {
+    "name": "FarmHelp prototype knowledge base",
+    "version": "1.0",
+    "educationOnly": true,
+    "note": "This is a small demo dataset. Replace or extend with trusted local extension material for a real use case."
+  },
+  "symptomMappings": {
+    "yellowing": {
+      "labels": ["Yellowing", "Chlorosis"],
+      "categoryKeys": ["nutrient-or-water-stress", "general-plant-stress", "check-soil-and-drainage"]
+    },
+    "leaf-spots": {
+      "labels": ["Leaf spots / lesions"],
+      "categoryKeys": ["leaf-spot-complex", "humidity-and-splash-risk", "sanitation-and-spread-control"]
+    },
+    "wilting": {
+      "labels": ["Wilting / drooping"],
+      "categoryKeys": ["water-and-root-stress", "heat-stress-and-irrigation", "check-for-root-problems"]
+    },
+    "powdery": {
+      "labels": ["Powdery coating"],
+      "categoryKeys": ["powdery-mildew-group", "airflow-and-humidity-management", "early-action"]
+    },
+    "holes": {
+      "labels": ["Holes / chewing"],
+      "categoryKeys": ["insect-feeding-damage", "scouting-and-traps", "protect-and-prevent"]
+    },
+    "curling": {
+      "labels": ["Leaf curling"],
+      "categoryKeys": ["stress-or-pest-associated-curl", "underside-scouting", "environmental-drift-and-stress-check"]
+    },
+    "stunting": {
+      "labels": ["Stunting / poor growth"],
+      "categoryKeys": ["growth-retardation-check", "nutrition-soil-and-planting-quality", "early-infestation-or-conditions"]
+    },
+    "wilting-early": {
+      "labels": ["Early wilting"],
+      "categoryKeys": ["water-and-root-stress", "check-for-root-problems", "urgent-scouting"]
+    }
+  },
+  "categories": {
+    "nutrient-or-water-stress": {
+      "name": "Nutrient or water-related stress (possible)",
+      "description": "Leaf color change can come from nutrient imbalance, watering issues, or combined stress. Patterns matter.",
+      "inspect": [
+        "Is yellowing more on older leaves, newer leaves, or both?",
+        "Are symptoms uniform across the field or patchy?",
+        "Check soil moisture and drainage in affected spots."
+      ],
+      "genericActions": [
+        "Review watering schedule and avoid both over- and under-watering.",
+        "Consider a simple soil/nutrient check if available (local extension).",
+        "Ensure adequate plant spacing and sunlight exposure."
+      ],
+      "escalateIf": [
+        "Rapid spreading across many plants, or severe loss of vigor."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+    "general-plant-stress": {
+      "name": "General plant stress (possible)",
+      "description": "Stress signals often have multiple causes. Use observation to narrow what to check next.",
+      "inspect": [
+        "Look for patterns: edges vs center, older vs newer leaves, and within-row vs between-row.",
+        "Note when symptoms started relative to weather changes or management actions."
+      ],
+      "genericActions": [
+        "Focus on basic agronomic checks: irrigation, weed competition, and crop management basics.",
+        "Keep records for discussion with an agronomist."
+      ],
+      "escalateIf": [
+        "You cannot find a simple agronomic explanation after basic checks."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+    "check-soil-and-drainage": {
+      "name": "Soil moisture and drainage check (possible)",
+      "description": "Poor drainage or inconsistent moisture can worsen many issues, including yellowing and growth loss.",
+      "inspect": [
+        "After watering/rain, does water stay pooled or drain quickly?",
+        "Is the affected area low-lying or near compacted spots?"
+      ],
+      "genericActions": [
+        "Improve drainage where possible (field-level measures).",
+        "Adjust irrigation amounts/timing and monitor soil moisture."
+      ],
+      "escalateIf": [
+        "Repeated waterlogging or rapid decline despite adjustments."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+
+    "leaf-spot-complex": {
+      "name": "Leaf spot complex (possible group)",
+      "description": "Lesions can come from different causes (often fungal/bacterial or other plant health factors). Do not treat as a confirmed diagnosis.",
+      "inspect": [
+        "Do spots have clear patterns (size/shape/color) and do they spread over time?",
+        "Check leaf undersides and compare healthy vs affected areas.",
+        "Note humidity conditions and whether overhead irrigation is used."
+      ],
+      "genericActions": [
+        "Remove and destroy heavily affected leaves (where appropriate).",
+        "Improve airflow (spacing/weeding) and reduce leaf wetness.",
+        "Avoid splash water on leaves when possible."
+      ],
+      "escalateIf": [
+        "Spreading quickly, severe defoliation, or repeated outbreaks year after year."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+    "humidity-and-splash-risk": {
+      "name": "Humidity and splash risk (possible driver)",
+      "description": "Many leaf problems worsen when leaves stay wet and when water splashes between plants.",
+      "inspect": [
+        "Is the problem worse in low-airflow areas or after frequent rains?",
+        "Does the irrigation method wet the foliage?"
+      ],
+      "genericActions": [
+        "Use irrigation practices that minimize leaf wetness.",
+        "Manage weeds to improve airflow."
+      ],
+      "escalateIf": [
+        "Continued worsening despite reducing leaf wetness."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+    "sanitation-and-spread-control": {
+      "name": "Sanitation and spread control (possible steps)",
+      "description": "Reducing spread can help limit damage while you consult experts.",
+      "inspect": [
+        "Are lesions clustered in specific rows/areas?",
+        "Is there evidence of rapid spread after management events?"
+      ],
+      "genericActions": [
+        "Sanitize tools between plots if you move between affected and healthy areas.",
+        "Remove plant debris when appropriate."
+      ],
+      "escalateIf": [
+        "Widespread spread with significant yield impact."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+
+    "water-and-root-stress": {
+      "name": "Water and root stress (possible)",
+      "description": "Wilting may come from moisture issues or root-related problems. Heat can also cause temporary wilting.",
+      "inspect": [
+        "Wilting occurs at midday and improves in the evening, or it persists?",
+        "Check soil moisture at root depth.",
+        "If safe, inspect roots for rot or poor development."
+      ],
+      "genericActions": [
+        "Adjust irrigation timing and amount; check drainage.",
+        "Avoid stressing the crop further while investigating.",
+        "Record weather conditions and changes to irrigation."
+      ],
+      "escalateIf": [
+        "Persistent wilting that does not recover, or suspected root rot."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+    "heat-stress-and-irrigation": {
+      "name": "Heat stress and irrigation timing (possible driver)",
+      "description": "Hot weather can cause wilting even without disease. The pattern helps distinguish temporary vs persistent stress.",
+      "inspect": [
+        "Are symptoms worst during peak heat hours?",
+        "Are affected plants near shade differences or irrigation differences?"
+      ],
+      "genericActions": [
+        "Consider irrigation timing that supports recovery (follow local best practice).",
+        "Use shade/mulch approaches where feasible."
+      ],
+      "escalateIf": [
+        "Symptoms persist despite appropriate moisture management."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+    "check-for-root-problems": {
+      "name": "Root problem check (possible)",
+      "description": "If wilting is persistent, root health becomes a priority for investigation.",
+      "inspect": [
+        "Look for root discoloration, poor root growth, or dead roots (if safe to inspect).",
+        "Assess whether plants are waterlogged or extremely dry."
+      ],
+      "genericActions": [
+        "Fix drainage or irrigation issues where possible.",
+        "Consult an agronomist if root symptoms are severe."
+      ],
+      "escalateIf": [
+        "Major root damage, rapid plant loss, or widespread persistent wilting."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+
+    "powdery-mildew-group": {
+      "name": "Powdery mildew group (possible)",
+      "description": "Powdery-looking growth can indicate a mildew-type issue. Patterns and spread rate matter.",
+      "inspect": [
+        "Is there a white powdery coating on leaf surfaces?",
+        "Does it spread under humid conditions or after canopy closure?"
+      ],
+      "genericActions": [
+        "Improve airflow (weed control and spacing).",
+        "Remove heavily affected leaves when appropriate.",
+        "Reduce humidity around the crop canopy."
+      ],
+      "escalateIf": [
+        "Rapid spread or severe canopy coverage."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+    "airflow-and-humidity-management": {
+      "name": "Airflow and humidity management (possible driver)",
+      "description": "Many leaf diseases/mildews are encouraged by poor airflow and persistent moisture/humidity.",
+      "inspect": [
+        "Are plants crowded with low airflow?",
+        "Is the disease worse in shaded or dense parts?"
+      ],
+      "genericActions": [
+        "Improve airflow by managing weeds and canopy density.",
+        "Avoid creating unnecessary leaf wetness."
+      ],
+      "escalateIf": [
+        "No improvement after basic management changes."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+    "early-action": {
+      "name": "Early action (helps reduce spread)",
+      "description": "Acting early can reduce spread and preserve yield.",
+      "inspect": [
+        "Are early symptoms limited to the first areas, or already widespread?"
+      ],
+      "genericActions": [
+        "Treat this as an early intervention moment: isolate affected areas where possible.",
+        "Keep notes for later comparison."
+      ],
+      "escalateIf": [
+        "If spread becomes widespread within days."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+
+    "insect-feeding-damage": {
+      "name": "Insect feeding damage (possible)",
+      "description": "Holes/chewed tissue often come from insects or other pests. Confirmation requires scouting.",
+      "inspect": [
+        "Look for insects, larvae, or feeding signs on leaf undersides.",
+        "Check nearby plants and field edges."
+      ],
+      "genericActions": [
+        "Scout at consistent times of day and record counts.",
+        "Use appropriate integrated pest management (IPM) methods recommended locally."
+      ],
+      "escalateIf": [
+        "Severe defoliation or rapid pest increase."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+    "scouting-and-traps": {
+      "name": "Scouting and trapping (possible step)",
+      "description": "Systematic scouting helps confirm whether pests are involved.",
+      "inspect": [
+        "Are there eggs or larvae on the underside of leaves?",
+        "Do you see recurring adult insects in the same areas?"
+      ],
+      "genericActions": [
+        "Set and monitor traps if you have access to locally recommended options.",
+        "Record the timing and location of observations."
+      ],
+      "escalateIf": [
+        "If populations rise quickly and threaten yield."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+    "protect-and-prevent": {
+      "name": "Protect and prevent (possible strategies)",
+      "description": "Prevention and barriers can reduce re-infestation while you plan next steps.",
+      "inspect": [
+        "Are there gaps in crop management or nearby weeds hosting pests?"
+      ],
+      "genericActions": [
+        "Maintain weed control and field sanitation.",
+        "Consider physical protections where suitable and safe."
+      ],
+      "escalateIf": [
+        "If you cannot control pest pressure with basic scouting and preventive steps."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+
+    "stress-or-pest-associated-curl": {
+      "name": "Leaf curling causes (possible group)",
+      "description": "Curling can be caused by stress or pests. Use observation to decide what to check next.",
+      "inspect": [
+        "Is curling happening with discoloration, spots, or only deformation?",
+        "Check the leaf underside for small pests or eggs."
+      ],
+      "genericActions": [
+        "Monitor irrigation and nutrient stress factors.",
+        "Use local IPM recommendations if pests are observed."
+      ],
+      "escalateIf": [
+        "If plants fail to recover after basic stress management."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+    "underside-scouting": {
+      "name": "Underside scouting (possible step)",
+      "description": "Many pests hide on leaf undersides. Observations here help narrow causes.",
+      "inspect": [
+        "Look for aphids, mites, or other small pests on the underside.",
+        "Look for sticky residue or honeydew if relevant."
+      ],
+      "genericActions": [
+        "Remove lightly infested leaves (if appropriate) and monitor again.",
+        "Discuss confirmed pests with an agronomist if severe."
+      ],
+      "escalateIf": [
+        "If curling spreads quickly or plants show major damage."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+    "environmental-drift-and-stress-check": {
+      "name": "Environmental stress check (possible driver)",
+      "description": "Recent management changes, weather extremes, or chemical exposure can contribute to stress patterns.",
+      "inspect": [
+        "Did symptoms start after a new input (fertilizer, pesticide, herbicide) or unusual weather?",
+        "Are symptoms uniform or localized to application areas?"
+      ],
+      "genericActions": [
+        "Avoid changing multiple variables at once; record what changed first.",
+        "Seek local expert advice if you suspect chemical/management-related stress."
+      ],
+      "escalateIf": [
+        "If there is severe damage or uncertainty about recent inputs."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+
+    "growth-retardation-check": {
+      "name": "Growth retardation check (possible)",
+      "description": "Stunting can come from nutrients, soil conditions, planting issues, or early infestations.",
+      "inspect": [
+        "Are plants evenly stunted or patchy?",
+        "Check root development and compare with nearby healthy plants."
+      ],
+      "genericActions": [
+        "Review planting depth, spacing, and seed quality.",
+        "Consider soil testing if possible and follow local recommendations."
+      ],
+      "escalateIf": [
+        "If many plants die or yield is clearly at risk."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+    "nutrition-soil-and-planting-quality": {
+      "name": "Nutrition/soil/planting quality (possible)",
+      "description": "Early growth is sensitive to nutrients, moisture, and correct planting conditions.",
+      "inspect": [
+        "Was the field previously cropped, and were residues managed?",
+        "Does stunting match low-fertility zones or drainage zones?"
+      ],
+      "genericActions": [
+        "Use appropriate nutrient management based on local advice.",
+        "Fix spacing/weed competition factors."
+      ],
+      "escalateIf": [
+        "If stunting persists after basic agronomic corrections."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+    "early-infestation-or-conditions": {
+      "name": "Early infestation or condition mismatch (possible)",
+      "description": "Early pest pressure or unsuitable conditions can limit growth.",
+      "inspect": [
+        "Any insect signs during early stage?",
+        "Is the problem limited to certain rows?"
+      ],
+      "genericActions": [
+        "Scout regularly and adjust management only after observing patterns.",
+        "Consult local extension for crop- and region-specific advice."
+      ],
+      "escalateIf": [
+        "If growth is severely reduced and spreading rapidly."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    },
+
+    "urgent-scouting": {
+      "name": "Urgent scouting (possible)",
+      "description": "Early wilting patterns can be urgent; prioritize investigation and record-keeping.",
+      "inspect": [
+        "Does wilting occur consistently, not just during peak heat?",
+        "Any signs of root discoloration or severe soil moisture issues?"
+      ],
+      "genericActions": [
+        "Check soil moisture and improve drainage/irrigation if needed.",
+        "Contact a local agronomist if unsure."
+      ],
+      "escalateIf": [
+        "Rapid decline within days or suspected severe root problems."
+      ],
+      "sources": ["Local extension guidance (replace with your sources)."]
+    }
+  }
+}
+

@@ -1,0 +1,244 @@
+:root {
+  --bg: #0b1220;
+  --card: #111a2e;
+  --card2: #0f172a;
+  --text: #e6edf7;
+  --muted: #a8b3c7;
+  --accent: #34d399;
+  --accent2: #60a5fa;
+  --danger: #fb7185;
+  --border: rgba(255, 255, 255, 0.12);
+  --radius: 14px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background: radial-gradient(1200px 600px at 10% -10%, rgba(52, 211, 153, 0.25), transparent),
+    radial-gradient(900px 500px at 90% 0%, rgba(96, 165, 250, 0.22), transparent),
+    var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #0f172a;
+  border: 1px solid var(--border);
+  color: var(--text);
+  z-index: 9999;
+}
+
+.skip-link:focus {
+  left: 12px;
+  top: 12px;
+}
+
+.page,
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 18px;
+}
+
+header {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 22px 18px 0;
+}
+
+header h1 {
+  margin: 0 0 8px;
+  font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+}
+
+header p {
+  margin: 0 0 14px;
+  color: var(--muted);
+  max-width: 68ch;
+}
+
+aside[role="note"] {
+  max-width: 1100px;
+  margin: 12px auto 0;
+  padding: 14px 18px;
+  border: 1px solid rgba(251, 113, 133, 0.35);
+  background: rgba(251, 113, 133, 0.08);
+  border-radius: var(--radius);
+  color: var(--text);
+}
+
+main {
+  padding-top: 16px;
+  display: grid;
+  gap: 16px;
+}
+
+section {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+form {
+  display: grid;
+  gap: 12px;
+}
+
+fieldset {
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 6px);
+  padding: 12px;
+}
+
+legend {
+  padding: 0 8px;
+  color: var(--accent2);
+  font-weight: 700;
+}
+
+label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  margin: 8px 10px 0 0;
+  user-select: none;
+}
+
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+select {
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(17, 26, 46, 0.8);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+textarea {
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(17, 26, 46, 0.8);
+  border: 1px solid var(--border);
+  color: var(--text);
+  resize: vertical;
+  min-height: 110px;
+}
+
+select:focus,
+textarea:focus {
+  outline: 2px solid rgba(52, 211, 153, 0.45);
+  outline-offset: 2px;
+}
+
+#symptom-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 6px 10px;
+  padding-top: 8px;
+}
+
+button {
+  border: 1px solid var(--border);
+  background: rgba(17, 26, 46, 0.9);
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+button.primary {
+  background: rgba(52, 211, 153, 0.12);
+  border-color: rgba(52, 211, 153, 0.45);
+}
+
+button:hover:not(:disabled) {
+  border-color: rgba(52, 211, 153, 0.7);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+form > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+#status {
+  color: var(--muted);
+  margin: 0;
+  flex: 1 1 240px;
+  min-height: 1.2em;
+}
+
+article {
+  margin-top: 10px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.15);
+  padding-top: 14px;
+}
+
+article h3 {
+  margin: 0 0 8px;
+  color: var(--accent2);
+}
+
+ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+footer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px 18px 28px;
+  color: var(--muted);
+}
+
+@media (min-width: 920px) {
+  main {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
