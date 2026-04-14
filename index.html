@@ -4,136 +4,340 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <title>FarmHelp</title>
+    <title>FarmHelp AI - Agricultural Guidance System</title>
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to main content</a>
 
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <button class="navbar-logo" data-page="home">
+          🌾 <span>FarmHelp Assistant</span>
+        </button>
+        <div class="navbar-menu">
+          <button class="nav-link active" data-page="home">Home</button>
+          <button class="nav-link" data-page="diagnosis">Diagnosis Tool</button>
+          <button class="nav-link" data-page="guide">Crop Guide</button>
+          <button class="nav-link" data-page="tips">Tips & Practices</button>
+          <button class="nav-link" data-page="about">About</button>
+        </div>
+      </div>
+    </nav>
+
     <header>
-      <h1>FarmHelp AI</h1>
-      <p>
-        Educational “symptom-to-next-steps” guidance for farmers and students.
-        This is a prototype—do not use it as the only basis for treatment decisions.
-      </p>
+      <h1>FarmHelp Assistant</h1>
+      <div id="header-popup" class="popup" style="display: none;">
+        <button class="close-popup" data-target="header-popup">&times;</button>
+        <p>
+          Empowering farmers and students with educational guidance from symptoms to actionable next steps.
+          This is a prototype—always consult qualified experts for treatment decisions.
+        </p>
+      </div>
     </header>
 
-    <aside role="note" aria-label="Prototype disclaimer">
+    <aside role="note" aria-label="Prototype disclaimer" id="aside-popup" class="popup" style="display: none;">
+      <button class="close-popup" data-target="aside-popup">&times;</button>
       <strong>Disclaimer:</strong>
       This app provides general information and learning support. It does not diagnose disease.
-      If symptoms are severe, spreading rapidly, or you’re unsure, contact a local agronomist/extension officer.
+      If symptoms are severe, spreading rapidly, or you're unsure, contact a local agronomist/extension officer.
     </aside>
 
-    <main id="main">
-      <section aria-labelledby="inputs-title">
-        <h2 id="inputs-title">1) Describe your crop situation</h2>
-
-        <form id="symptom-form">
-          <fieldset>
-            <legend>Crop</legend>
-
-            <label for="crop">Choose a crop</label>
-            <select id="crop" name="crop" required>
-              <option value="" selected disabled>Select crop…</option>
-              <option value="maize">Maize</option>
-              <option value="tomato">Tomato</option>
-              <option value="cassava">Cassava</option>
-              <option value="other">Other (prototype)</option>
-            </select>
-          </fieldset>
-
-          <fieldset>
-            <legend>Plant part</legend>
-            <label for="plant-part">Which part is affected?</label>
-            <select id="plant-part" name="plantPart" required>
-              <option value="" selected disabled>Select part…</option>
-              <option value="leaf">Leaf</option>
-              <option value="stem">Stem</option>
-              <option value="root">Root</option>
-              <option value="whole">Whole plant</option>
-            </select>
-          </fieldset>
-
-          <fieldset>
-            <legend>Growth stage</legend>
-            <label for="growth-stage">What stage is it at?</label>
-            <select id="growth-stage" name="growthStage" required>
-              <option value="" selected disabled>Select stage…</option>
-              <option value="seedling">Seedling</option>
-              <option value="vegetative">Vegetative</option>
-              <option value="flowering">Flowering</option>
-              <option value="fruiting">Fruiting</option>
-            </select>
-          </fieldset>
-
-          <fieldset>
-            <legend>Symptoms (select all that apply)</legend>
-            <p>Select what you’re observing. You can also add details in the text box.</p>
-
-            <div id="symptom-options" role="group" aria-label="Symptom checkboxes">
-              <label><input type="checkbox" name="symptoms" value="yellowing" /> Yellowing</label>
-              <label><input type="checkbox" name="symptoms" value="leaf-spots" /> Leaf spots / lesions</label>
-              <label><input type="checkbox" name="symptoms" value="wilting" /> Wilting / drooping</label>
-              <label><input type="checkbox" name="symptoms" value="powdery" /> Powdery coating</label>
-              <label><input type="checkbox" name="symptoms" value="holes" /> Holes / chewing</label>
-              <label><input type="checkbox" name="symptoms" value="curling" /> Leaf curling</label>
-              <label><input type="checkbox" name="symptoms" value="stunting" /> Stunting / poor growth</label>
-              <label><input type="checkbox" name="symptoms" value="wilting-early" /> Early wilting</label>
+    <!-- Pages Container -->
+    <main id="main" class="pages-container">
+      <!-- Page 1: Home -->
+      <div id="page-home" class="page active">
+        <section class="hero-section">
+          <div class="hero-content">
+            <h2>Welcome to FarmHelp AI</h2>
+            <p class="hero-subtitle">Your personal agricultural diagnostic assistant powered by AI</p>
+            <p>FarmHelp helps farmers and agricultural students diagnose crop issues quickly and accurately. Simply describe your crop's symptoms, and our AI-powered system will provide educational guidance and next steps.</p>
+            <div class="hero-features">
+              <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>Smart Diagnosis</h3>
+                <p>AI-powered analysis of crop symptoms</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>Learn & Grow</h3>
+                <p>Educational guidance backed by agricultural expertise</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Quick Results</h3>
+                <p>Get actionable insights in seconds</p>
+              </div>
             </div>
-          </fieldset>
-
-          <fieldset>
-            <legend>Optional description (plain text)</legend>
-            <label for="description">What do you see? (e.g., pattern of spots, when it started, severity)</label>
-            <textarea
-              id="description"
-              name="description"
-              rows="6"
-              placeholder="Write a short description you can explain to a teacher or agronomist…"
-            ></textarea>
-          </fieldset>
-
-          <div>
-            <p id="status" aria-live="polite" aria-atomic="true"></p>
-            <button type="submit" id="get-guidance">Get guidance</button>
-            <button type="button" id="load-sample">Load sample</button>
+            <button class="cta-button" data-page="diagnosis">Start Diagnosis Now</button>
           </div>
-        </form>
-      </section>
+        </section>
+      </div>
 
-      <section aria-labelledby="output-title">
-        <h2 id="output-title">2) FarmHelp guidance (demo output)</h2>
+      <!-- Page 2: Diagnosis Tool -->
+      <div id="page-diagnosis" class="page">
+        <section aria-labelledby="inputs-title">
+          <h2 id="inputs-title">1) Describe your crop situation</h2>
 
-        <article>
-          <h3>Brief summary</h3>
-          <p id="summary">Your guidance will appear here after you click “Get guidance”.</p>
-        </article>
+          <form id="symptom-form">
+            <fieldset>
+              <legend>Crop</legend>
+              <label for="crop">Choose a crop</label>
+              <select id="crop" name="crop" required>
+                <option value="" selected disabled>Select crop…</option>
+                <option value="maize">Maize</option>
+                <option value="tomato">Tomato</option>
+                <option value="cassava">Cassava</option>
+                <option value="rice">Rice</option>
+                <option value="wheat">Wheat</option>
+                <option value="sorghum">Sorghum</option>
+                <option value="soybean">Soybean</option>
+                <option value="groundnut">Groundnut</option>
+                <option value="potato">Potato</option>
+                <option value="onion">Onion</option>
+                <option value="banana">Banana</option>
+                <option value="coffee">Coffee</option>
+                <option value="other">Other (prototype)</option>
+              </select>
+            </fieldset>
 
-        <article>
-          <h3>Possible issue categories (non-diagnostic)</h3>
-          <ul id="shortlist">
-            <li>No output yet.</li>
+            <fieldset>
+              <legend>Plant part</legend>
+              <label for="plant-part">Which part is affected?</label>
+              <select id="plant-part" name="plantPart" required>
+                <option value="" selected disabled>Select part…</option>
+                <option value="leaf">Leaf</option>
+                <option value="stem">Stem</option>
+                <option value="root">Root</option>
+                <option value="whole">Whole plant</option>
+                <option value="fruit">Fruit</option>
+              </select>
+            </fieldset>
+
+            <fieldset>
+              <legend>Growth stage</legend>
+              <label for="growth-stage">What stage is it at?</label>
+              <select id="growth-stage" name="growthStage" required>
+                <option value="" selected disabled>Select stage…</option>
+                <option value="seedling">Seedling</option>
+                <option value="vegetative">Vegetative</option>
+                <option value="flowering">Flowering</option>
+                <option value="fruiting">Fruiting</option>
+              </select>
+            </fieldset>
+
+            <fieldset>
+              <legend>Symptoms (select all that apply)</legend>
+              <p>Select what you're observing. You can also add details in the text box.</p>
+              <div id="symptom-options" role="group" aria-label="Symptom checkboxes">
+                <label><input type="checkbox" name="symptoms" value="yellowing" /> Yellowing</label>
+                <label><input type="checkbox" name="symptoms" value="leaf-spots" /> Leaf spots / lesions</label>
+                <label><input type="checkbox" name="symptoms" value="wilting" /> Wilting / drooping</label>
+                <label><input type="checkbox" name="symptoms" value="powdery" /> Powdery coating</label>
+                <label><input type="checkbox" name="symptoms" value="holes" /> Holes / chewing</label>
+                <label><input type="checkbox" name="symptoms" value="curling" /> Leaf curling</label>
+                <label><input type="checkbox" name="symptoms" value="stunting" /> Stunting / poor growth</label>
+                <label><input type="checkbox" name="symptoms" value="wilting-early" /> Early wilting</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Optional description (plain text)</legend>
+              <label for="description">What do you see? (e.g., pattern of spots, when it started, severity)</label>
+              <textarea id="description" name="description" rows="6" placeholder="Write a short description you can explain to a teacher or agronomist…"></textarea>
+            </fieldset>
+
+            <div>
+              <p id="status" aria-live="polite" aria-atomic="true"></p>
+              <button type="submit" id="get-guidance">Get guidance</button>
+              <button type="button" id="load-sample">Load sample</button>
+            </div>
+          </form>
+        </section>
+      </div>
+
+      <!-- Page 3: Results -->
+      <div id="page-results" class="page">
+        <section aria-labelledby="output-title">
+          <h2 id="output-title">2) FarmHelp guidance (demo output)</h2>
+          <article>
+            <h3>Brief summary</h3>
+            <p id="summary">Your guidance will appear here after you click "Get guidance".</p>
+          </article>
+          <article>
+            <h3>Possible issue categories (non-diagnostic)</h3>
+            <ul id="shortlist"><li>No output yet.</li></ul>
+          </article>
+          <article>
+            <h3>What to inspect next</h3>
+            <ul id="checklist"><li>Pick symptoms on the left to generate a checklist.</li></ul>
+          </article>
+          <article>
+            <h3>Escalate if…</h3>
+            <ul id="escalate"><li>Uncertainty is high or symptoms are rapidly worsening.</li></ul>
+          </article>
+          <article>
+            <h3>Sources (prototype knowledge base)</h3>
+            <div id="sources">We will list the included extension-style documents here.</div>
+          </article>
+          <button class="cta-button" data-page="diagnosis">Back to diagnosis</button>
+        </section>
+      </div>
+
+      <!-- Page 4: Crop Guide -->
+      <div id="page-guide" class="page">
+        <section>
+          <h2>Crop Guide & Knowledge Base</h2>
+          <p>Learn about common crops and their diseases, prevention strategies, and best practices.</p>
+        </section>
+
+        <section>
+          <h3>🌽 Maize</h3>
+          <h4>Common Issues:</h4>
+          <ul>
+            <li><strong>Leaf Spots:</strong> Fungal infection common during wet seasons. Improve drainage and spacing.</li>
+            <li><strong>Yellowing:</strong> Can indicate nitrogen deficiency. Consider soil testing.</li>
+            <li><strong>Wilting:</strong> Check soil moisture and pest damage (armyworms).</li>
           </ul>
-        </article>
-
-        <article>
-          <h3>What to inspect next</h3>
-          <ul id="checklist">
-            <li>Pick symptoms on the left to generate a checklist.</li>
+          <h4>Prevention Tips:</h4>
+          <ul>
+            <li>Use certified disease-resistant varieties</li>
+            <li>Practice crop rotation (3-year cycle)</li>
+            <li>Maintain proper plant spacing for airflow</li>
+            <li>Scout fields weekly during growing season</li>
           </ul>
-        </article>
+        </section>
 
-        <article>
-          <h3>Escalate if…</h3>
-          <ul id="escalate">
-            <li>Uncertainty is high or symptoms are rapidly worsening.</li>
+        <section>
+          <h3>🍅 Tomato</h3>
+          <h4>Common Issues:</h4>
+          <ul>
+            <li><strong>Early Blight:</strong> Brown spots with concentric rings. Remove infected leaves.</li>
+            <li><strong>Powdery Mildew:</strong> White coating on leaves. Ensure good air circulation.</li>
+            <li><strong>Blossom End Rot:</strong> Dark spots on fruit. Related to calcium and water management.</li>
           </ul>
-        </article>
+          <h4>Prevention Tips:</h4>
+          <ul>
+            <li>Stake and prune for better airflow</li>
+            <li>Water at soil level, avoid wetting leaves</li>
+            <li>Remove lower leaves as plant grows</li>
+            <li>Use mulch to maintain consistent soil moisture</li>
+          </ul>
+        </section>
 
-        <article>
-          <h3>Sources (prototype knowledge base)</h3>
-          <div id="sources">We will list the included extension-style documents here.</div>
-        </article>
-      </section>
+        <section>
+          <h3>🥔 Cassava</h3>
+          <h4>Common Issues:</h4>
+          <ul>
+            <li><strong>Cassava Mosaic Disease:</strong> Mottled leaves, stunted growth. Use disease-free cuttings.</li>
+            <li><strong>Leaf Spots:</strong> Fungal disease in humid climates. Reduce humidity where possible.</li>
+            <li><strong>Root Rot:</strong> Poor drainage and waterlogging cause this. Improve field drainage.</li>
+          </ul>
+          <h4>Prevention Tips:</h4>
+          <ul>
+            <li>Always use certified disease-free planting material</li>
+            <li>Practice intercropping to reduce pest populations</li>
+            <li>Ensure good drainage to prevent root diseases</li>
+            <li>Monitor for mosaic disease symptoms early</li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- Page 4: Tips & Practices -->
+      <div id="page-tips" class="page">
+        <section>
+          <h2>Best Practices & Expert Tips</h2>
+          <p>Sustainable farming strategies and proven techniques to maximize crop health and yield.</p>
+        </section>
+
+        <section>
+          <h3>🌱 Soil Health Management</h3>
+          <ul>
+            <li><strong>Soil Testing:</strong> Test soil every 2-3 years to understand nutrient levels and pH</li>
+            <li><strong>Organic Matter:</strong> Add compost or manure to improve soil structure and water retention</li>
+            <li><strong>Crop Rotation:</strong> Rotate crops to break pest cycles and replenish different nutrients</li>
+            <li><strong>Mulching:</strong> Retain moisture, regulate temperature, and suppress weeds</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>💧 Water Management</h3>
+          <ul>
+            <li><strong>Irrigation Timing:</strong> Water early morning or evening to reduce evaporation</li>
+            <li><strong>Soil Moisture:</strong> Check soil moisture before watering (not just surface)</li>
+            <li><strong>Drainage:</strong> Ensure proper drainage to prevent waterlogging and root diseases</li>
+            <li><strong>Rainwater Harvesting:</strong> Capture rainwater to reduce dependency on other sources</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>🐛 Integrated Pest Management (IPM)</h3>
+          <ul>
+            <li><strong>Monitor Regularly:</strong> Scout fields 2-3 times per week for early pest detection</li>
+            <li><strong>Biological Control:</strong> Encourage natural predators and beneficial insects</li>
+            <li><strong>Cultural Practices:</strong> Remove affected leaves, maintain field sanitation</li>
+            <li><strong>Chemical Control:</strong> Use pesticides only when necessary and follow safety guidelines</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>📅 Seasonal Calendar</h3>
+          <ul>
+            <li><strong>Pre-Season:</strong> Prepare soil, test nutrients, select varieties</li>
+            <li><strong>Planting:</strong> Choose right timing based on rainfall patterns and temperature</li>
+            <li><strong>Growing Season:</strong> Regular monitoring, timely weeding, pest/disease management</li>
+            <li><strong>Harvest:</strong> Harvest at optimal maturity for best quality</li>
+            <li><strong>Post-Harvest:</strong> Proper storage and handling to reduce losses</li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- Page 5: About & FAQ -->
+      <div id="page-about" class="page">
+        <section>
+          <h2>About FarmHelp AI</h2>
+          <p>FarmHelp AI is an educational prototype designed to help farmers and students quickly identify crop issues and understand next steps for management.</p>
+          
+          <h3>How It Works</h3>
+          <ol>
+            <li>Select your crop type and affected plant part</li>
+            <li>Describe the visible symptoms</li>
+            <li>Our AI analyzes the information against our knowledge base</li>
+            <li>Receive educational guidance on possible issues and inspection steps</li>
+            <li>Learn recommended management practices</li>
+          </ol>
+
+          <h3>Important Disclaimer</h3>
+          <p><strong>This system does not perform medical diagnosis on crops.</strong> It provides educational guidance only. For critical decisions affecting your farm, please consult with:</p>
+          <ul>
+            <li>Local agricultural extension officers</li>
+            <li>Qualified agronomists</li>
+            <li>Government agricultural services</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Frequently Asked Questions</h2>
+
+          <h3>Q: Can FarmHelp diagnose diseases?</h3>
+          <p>A: No. FarmHelp provides <strong>educational guidance</strong> based on symptoms you describe. It helps you understand what to look for and next steps, but a qualified agronomist should make final diagnoses.</p>
+
+          <h3>Q: What crops does FarmHelp support?</h3>
+          <p>A: Currently, we support Maize, Tomato, and Cassava, with "Other" as a prototype option. We're expanding the knowledge base regularly.</p>
+
+          <h3>Q: How accurate is the AI guidance?</h3>
+          <p>A: The AI provides educational summaries based on your symptom descriptions. Accuracy depends on accurate symptom reporting and your local conditions. Always verify with local experts.</p>
+
+          <h3>Q: Can I use this for commercial farming decisions?</h3>
+          <p>A: FarmHelp is designed as an educational tool and prototype. For commercial operations, please consult professional agricultural services.</p>
+
+          <h3>Q: What data does FarmHelp collect?</h3>
+          <p>A: Your data stays in your browser. We don't collect or store any personal or farm information. Complete privacy protection.</p>
+
+          <h3>Q: How can I provide feedback or suggest improvements?</h3>
+          <p>A: This is a coursework prototype. Feedback should be directed to the agricultural extension services working with your institution.</p>
+        </section>
+      </div>
     </main>
 
     <footer>
@@ -145,4 +349,3 @@
     <script type="module" src="app.js"></script>
   </body>
 </html>
-
