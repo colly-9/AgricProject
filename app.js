@@ -573,10 +573,23 @@ function setupNavigation() {
       // If it was a nav link, close mobile menu if open
       if (button.classList.contains("nav-link")) {
         const menu = document.querySelector(".navbar-menu");
+        const hamburger = document.querySelector(".hamburger");
         if (menu) menu.classList.remove("active");
+        if (hamburger) hamburger.classList.remove("active");
       }
     });
   });
+
+  // Setup hamburger menu toggle
+  const hamburger = document.querySelector(".hamburger");
+  const menu = document.querySelector(".navbar-menu");
+  
+  if (hamburger && menu) {
+    hamburger.addEventListener("click", () => {
+      menu.classList.toggle("active");
+      hamburger.classList.toggle("active");
+    });
+  }
 }
 
 async function init() {
