@@ -4,7 +4,7 @@ import { pipeline, env } from "https://cdn.jsdelivr.net/npm/@xenova/transformers
 env.allowLocalModels = false;
 env.useBrowserCache = true;
 
-const MODEL_ID = "Xenova/distilbart-cnn-6-6";
+const MODEL_ID = "Xenova/distilbart-cnn-6-3";
 const MIN_SELECTED_SYMPTOMS = 1;
 const MAX_INPUT_CHARS_FOR_AI = 700;
 const TOP_CATEGORIES_LIMIT = 3;
