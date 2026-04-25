@@ -557,6 +557,52 @@ function showPage(pageName) {
   window.scrollTo(0, 0);
 }
 
+// ============= WAIT POPUP FUNCTION==========
+/*function showWaitMessage() {
+  const popup = document.createElement("div");
+  popup.textContent = "Loading Crop Guide... please wait ⏳";
+  popup.style.position = "fixed";
+  popup.style.top = "20px";
+  popup.style.left = "50%";
+  popup.style.transform = "translateX(-50%)";
+  popup.style.background = "#0e2d4c";
+  popup.style.color = "white";
+  popup.style.padding = "12px 20px";
+  popup.style.borderRadius = "8px";
+  popup.style.zIndex = "9999";
+  popup.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
+
+  document.body.appendChild(popup);
+
+  setTimeout(() => {
+    popup.remove();
+  }, 2000);
+}*/
+
+function showWaitMessage(text = "Analyzing crop... please wait ⏳") {
+  const popup = document.createElement("div");
+  popup.id = "wait-popup";
+  popup.textContent = text;
+
+  popup.style.position = "fixed";
+  popup.style.top = "20px";
+  popup.style.left = "50%";
+  popup.style.transform = "translateX(-50%)";
+  popup.style.background = "#0e2d4c";
+  popup.style.color = "white";
+  popup.style.padding = "12px 20px";
+  popup.style.borderRadius = "8px";
+  popup.style.zIndex = "9999";
+  popup.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
+
+  document.body.appendChild(popup);
+}
+
+function removeWaitMessage() {
+  const popup = document.getElementById("wait-popup");
+  if (popup) popup.remove();
+}
+
 /**
  * Sets up navigation button event listeners
  */
@@ -568,9 +614,15 @@ function setupNavigation() {
     button.addEventListener("click", (e) => {
       e.preventDefault();
       const pageName = button.dataset.page;
-      showPage(pageName);
       
       // If it was a nav link, close mobile menu if open
+      if (pageName == "guide") {
+        showWaitMessage();
+      }
+      setTimeout(() => {
+        showPage(pageName);
+      }, 300) //small delay to allow wait message to appear before navigation
+      
       if (button.classList.contains("nav-link")) {
         const menu = document.querySelector(".navbar-menu");
         const hamburger = document.querySelector(".hamburger");
@@ -628,9 +680,13 @@ async function init() {
     e.preventDefault();
     if (!knowledgeBase) return;
 
+    showWaitMessage("Analyzing crop... please wait ⏳");
+
     // Basic UX: clear old status quickly
     setStatus("Working...");
     await handleSubmit({ knowledgeBase });
+
+    removeWaitMessage();//remove after processing
   });
 
   const loadSampleBtn = document.getElementById("load-sample");
